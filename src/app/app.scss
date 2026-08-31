@@ -51,6 +51,11 @@
   font-family: var(--display);
   font-weight: 800;
   letter-spacing: 0.02em;
+  text-decoration: none;
+  color: var(--text);
+  transition: color 0.15s ease;
+
+  &:hover { color: var(--accent-2); }
 }
 
 .topbar__nav {
@@ -66,6 +71,37 @@
   .topbar__nav { display: none; }
 }
 
+.topbar__right {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.lang-toggle {
+  font-family: var(--display);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  background: none;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 0.35rem 0.7rem;
+  color: var(--text-dim);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  transition: border-color 0.15s ease;
+
+  &:hover { border-color: var(--accent-2); }
+
+  span.is-active { color: var(--text); }
+}
+
+.lang-toggle__sep {
+  color: var(--line);
+}
+
 .topbar__social {
   display: flex;
   gap: 1rem;
@@ -73,6 +109,10 @@
   a { color: var(--text-dim); display: flex; transition: color 0.15s ease; }
   a:hover { color: var(--accent-2); }
   svg { width: 20px; height: 20px; }
+}
+
+@media (max-width: 420px) {
+  .topbar__social { display: none; }
 }
 
 /* ---------- Hero ---------- */
@@ -207,6 +247,7 @@
 /* ---------- Bands ---------- */
 
 .band {
+  scroll-margin-top: 5rem;
   max-width: 68rem;
   margin: 0 auto;
   padding: clamp(3rem, 6vw, 5.5rem) clamp(1.25rem, 5vw, 4rem);
@@ -347,6 +388,85 @@
   .timeline__item:not(:last-child)::before { left: 0.45rem; }
 }
 
+/* ---------- Education, languages, certifications ---------- */
+
+.creds-grid {
+  display: grid;
+  grid-template-columns: 1.3fr 0.8fr 1fr;
+  gap: 2.5rem;
+}
+
+@media (max-width: 860px) {
+  .creds-grid { grid-template-columns: 1fr; gap: 2.25rem; }
+}
+
+.creds-col__label {
+  font-family: var(--display);
+  font-weight: 600;
+  font-size: 0.95rem;
+  margin: 0 0 1rem;
+  padding-top: 0.9rem;
+  border-top: 2px solid transparent;
+  border-image: var(--gradient) 1;
+}
+
+.edu-list, .kv-list, .cert-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+
+  li { padding: 0.7rem 0; border-top: 1px solid var(--line-soft); }
+  li:first-child { border-top: none; padding-top: 0; }
+}
+
+.edu-list li {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.edu-list__school {
+  font-family: var(--display);
+  font-weight: 700;
+}
+
+.edu-list__detail {
+  color: var(--text-dim);
+  font-size: 0.85rem;
+}
+
+.edu-list__period {
+  font-family: var(--display);
+  font-size: 0.72rem;
+  font-variant-numeric: tabular-nums;
+  color: var(--accent-2);
+}
+
+.kv-list li {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  font-size: 0.92rem;
+
+  span:last-child { color: var(--text-dim); font-size: 0.82rem; white-space: nowrap; }
+}
+
+.cert-list li {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.cert-list__name {
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.cert-list__meta {
+  font-size: 0.78rem;
+  color: var(--text-dim);
+}
+
 /* ---------- Projects ---------- */
 
 .projects {
@@ -365,6 +485,50 @@
   border-radius: 1.25rem;
   padding: 1.75rem;
   box-shadow: 0 24px 48px -28px rgba(0, 0, 0, 0.6);
+}
+
+.carousel {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  margin-bottom: 1.25rem;
+  border-radius: 0.75rem;
+  overflow: hidden;
+  background: var(--bg);
+}
+
+.carousel__slide {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+
+  &.is-active { opacity: 1; }
+}
+
+.carousel__dots {
+  position: absolute;
+  left: 50%;
+  bottom: 0.6rem;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 0.4rem;
+
+  button {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    border: none;
+    padding: 0;
+    background: rgba(238, 241, 248, 0.4);
+    cursor: pointer;
+    transition: background 0.15s ease, transform 0.15s ease;
+
+    &.is-active { background: var(--accent-2); transform: scale(1.3); }
+  }
 }
 
 .project__motif {
@@ -451,6 +615,7 @@
 /* ---------- Contact / footer ---------- */
 
 .contact {
+  scroll-margin-top: 5rem;
   text-align: center;
 
   p { color: var(--text-dim); margin: 0 0 2rem; }

@@ -10,40 +10,41 @@
 <a class="skip-link" href="#main">Skip to content</a>
 
 <header class="topbar">
-  <span class="topbar__mark">GL</span>
+  <a class="topbar__mark" href="#top" [attr.aria-label]="t().nav.toTop">GL</a>
   <nav class="topbar__nav">
-    <a href="#projects">Projects</a>
-    <a href="#writing">Writing</a>
-    <a href="#contact">Contact</a>
+    <a href="#projects">{{ t().nav.projects }}</a>
+    <a href="#writing">{{ t().nav.writing }}</a>
+    <a href="#contact">{{ t().nav.contact }}</a>
   </nav>
-  <div class="topbar__social">
-    <a [href]="linkedin" target="_blank" rel="noopener" aria-label="LinkedIn">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="3"/><line x1="8" y1="10" x2="8" y2="17"/><circle cx="8" cy="6.5" r="0.75" fill="currentColor" stroke="none"/><path d="M12 17v-4.5a2.5 2.5 0 0 1 5 0V17"/><line x1="12" y1="10" x2="12" y2="17"/></svg>
-    </a>
-    <a [href]="github" target="_blank" rel="noopener" aria-label="GitHub">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3a9 9 0 0 0-2.85 17.54c.45.08.6-.2.6-.43v-1.68c-2.5.55-3.03-1.09-3.03-1.09-.41-1.04-1-1.32-1-1.32-.82-.56.06-.55.06-.55.9.06 1.38.93 1.38.93.8 1.38 2.11.98 2.63.75.08-.58.32-.98.57-1.21-2-.23-4.1-1-4.1-4.45 0-.98.35-1.79.92-2.42-.09-.23-.4-1.15.09-2.4 0 0 .75-.24 2.46.92a8.4 8.4 0 0 1 4.48 0c1.71-1.16 2.46-.92 2.46-.92.5 1.25.18 2.17.09 2.4.58.63.92 1.44.92 2.42 0 3.46-2.1 4.22-4.11 4.44.33.29.62.85.62 1.71v2.53c0 .24.15.51.61.43A9 9 0 0 0 12 3Z"/></svg>
-    </a>
-    <a [href]="devto" target="_blank" rel="noopener" aria-label="dev.to">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M7 9v6h1.2c1 0 1.8-.9 1.8-2v-2c0-1.1-.8-2-1.8-2H7Z"/><path d="M12.5 9v6"/><path d="M15 9v4.5a1.5 1.5 0 0 0 1.5 1.5H17"/><path d="M15 12h1.6"/></svg>
-    </a>
+  <div class="topbar__right">
+    <button type="button" class="lang-toggle" (click)="toggleLang()" [attr.aria-label]="'Switch language'">
+      <span [class.is-active]="lang() === 'en'">EN</span>
+      <span class="lang-toggle__sep">/</span>
+      <span [class.is-active]="lang() === 'es'">ES</span>
+    </button>
+    <div class="topbar__social">
+      <a [href]="linkedin" target="_blank" rel="noopener" aria-label="LinkedIn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="3"/><line x1="8" y1="10" x2="8" y2="17"/><circle cx="8" cy="6.5" r="0.75" fill="currentColor" stroke="none"/><path d="M12 17v-4.5a2.5 2.5 0 0 1 5 0V17"/><line x1="12" y1="10" x2="12" y2="17"/></svg>
+      </a>
+      <a [href]="github" target="_blank" rel="noopener" aria-label="GitHub">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3a9 9 0 0 0-2.85 17.54c.45.08.6-.2.6-.43v-1.68c-2.5.55-3.03-1.09-3.03-1.09-.41-1.04-1-1.32-1-1.32-.82-.56.06-.55.06-.55.9.06 1.38.93 1.38.93.8 1.38 2.11.98 2.63.75.08-.58.32-.98.57-1.21-2-.23-4.1-1-4.1-4.45 0-.98.35-1.79.92-2.42-.09-.23-.4-1.15.09-2.4 0 0 .75-.24 2.46.92a8.4 8.4 0 0 1 4.48 0c1.71-1.16 2.46-.92 2.46-.92.5 1.25.18 2.17.09 2.4.58.63.92 1.44.92 2.42 0 3.46-2.1 4.22-4.11 4.44.33.29.62.85.62 1.71v2.53c0 .24.15.51.61.43A9 9 0 0 0 12 3Z"/></svg>
+      </a>
+      <a [href]="devto" target="_blank" rel="noopener" aria-label="dev.to">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M7 9v6h1.2c1 0 1.8-.9 1.8-2v-2c0-1.1-.8-2-1.8-2H7Z"/><path d="M12.5 9v6"/><path d="M15 9v4.5a1.5 1.5 0 0 0 1.5 1.5H17"/><path d="M15 12h1.6"/></svg>
+      </a>
+    </div>
   </div>
 </header>
 
 <main id="main">
-  <section class="hero">
+  <section class="hero" id="top">
     <div class="hero__text">
       <h1 class="hero__name">Gerardo <span class="hero__name-accent">León</span></h1>
-      <p class="hero__role">Software Engineer &amp; Team Lead</p>
-      <p class="hero__bio">
-        8 years building systems across health insurance, health provider, and market
-        research platforms &mdash; cutting new-hire onboarding <strong>80%</strong>, holding
-        a critical migration at <strong>99.5% uptime</strong> with zero incidents, and
-        rewriting half a team's codebase around SOLID. Currently leading delivery and
-        mentoring engineers at Qualifacts.
-      </p>
+      <p class="hero__role">{{ t().hero.role }}</p>
+      <p class="hero__bio" [innerHTML]="t().hero.bio"></p>
       <div class="hero__actions">
-        <a class="btn btn--primary" href="#projects">View projects</a>
-        <a class="btn btn--ghost" href="/assets/Gerardo-Leon-CV.pdf" download>Download CV</a>
+        <a class="btn btn--primary" href="#projects">{{ t().hero.ctaProjects }}</a>
+        <a class="btn btn--ghost" href="/assets/Gerardo-Leon-CV.pdf" download>{{ t().hero.ctaCv }}</a>
       </div>
     </div>
     <div class="hero__photo-wrap">
@@ -53,9 +54,9 @@
   </section>
 
   <section class="band reveal" id="focus">
-    <h2>What I build with</h2>
+    <h2>{{ t().focus.heading }}</h2>
     <div class="focus-list">
-      @for (group of focusAreas; track group.label) {
+      @for (group of t().focus.groups; track group.label) {
         <div class="focus-group">
           <p class="focus-group__label">{{ group.label }}</p>
           <ul class="focus-group__items">
@@ -69,9 +70,9 @@
   </section>
 
   <section class="band reveal" id="experience">
-    <h2>Experience</h2>
+    <h2>{{ t().experience.heading }}</h2>
     <ol class="timeline">
-      @for (job of experience; track job.company) {
+      @for (job of t().experience.jobs; track job.company) {
         <li class="timeline__item">
           <div class="timeline__marker" aria-hidden="true"></div>
           <div class="timeline__content">
@@ -90,47 +91,116 @@
     </ol>
   </section>
 
+  <section class="band reveal" id="education">
+    <h2>{{ t().education.heading }}</h2>
+    <div class="creds-grid">
+      <div class="creds-col">
+        <p class="creds-col__label">{{ t().education.educationLabel }}</p>
+        <ul class="edu-list">
+          @for (e of t().education.entries; track e.school) {
+            <li>
+              <span class="edu-list__school">{{ e.school }}</span>
+              <span class="edu-list__detail">{{ e.detail }}</span>
+              <span class="edu-list__period">{{ e.period }}</span>
+            </li>
+          }
+        </ul>
+      </div>
+
+      <div class="creds-col">
+        <p class="creds-col__label">{{ t().education.languagesLabel }}</p>
+        <ul class="kv-list">
+          @for (l of t().education.languages; track l.name) {
+            <li><span>{{ l.name }}</span><span>{{ l.level }}</span></li>
+          }
+        </ul>
+      </div>
+
+      <div class="creds-col">
+        <p class="creds-col__label">{{ t().education.certificationsLabel }}</p>
+        <ul class="cert-list">
+          @for (c of t().education.certifications; track c.name) {
+            <li>
+              <span class="cert-list__name">{{ c.name }}</span>
+              <span class="cert-list__meta">{{ c.issuer }} · {{ c.date }}</span>
+            </li>
+          }
+        </ul>
+      </div>
+    </div>
+  </section>
+
   <section class="band reveal" id="projects">
-    <h2>Projects</h2>
+    <h2>{{ t().projects.heading }}</h2>
     <div class="projects">
       <article class="project">
-        <svg class="project__motif" viewBox="0 0 240 60" preserveAspectRatio="none" aria-hidden="true">
-          <path d="M0 30 Q 20 5, 40 30 T 80 30 T 120 30 T 160 30 T 200 30 T 240 30" />
-        </svg>
+        @if (chords.screenshots.length) {
+          <div class="carousel" (mouseenter)="chordsCarousel.stop()" (mouseleave)="chordsCarousel.start()">
+            @for (src of chords.screenshots; track src; let i = $index) {
+              <img [src]="src" alt="" class="carousel__slide" [class.is-active]="i === chordsCarousel.index()" />
+            }
+            @if (chords.screenshots.length > 1) {
+              <div class="carousel__dots">
+                @for (src of chords.screenshots; track src; let i = $index) {
+                  <button type="button" [class.is-active]="i === chordsCarousel.index()" (click)="chordsCarousel.goTo(i)" [attr.aria-label]="'Slide ' + (i + 1)"></button>
+                }
+              </div>
+            }
+          </div>
+        } @else {
+          <svg class="project__motif" viewBox="0 0 240 60" preserveAspectRatio="none" aria-hidden="true">
+            <path d="M0 30 Q 20 5, 40 30 T 80 30 T 120 30 T 160 30 T 200 30 T 240 30" />
+          </svg>
+        }
         <h3>The Chords</h3>
-        <p>{{ chords.tagline }}</p>
-        <p class="project__stat">{{ chords.stat }}</p>
+        <p>{{ t().projects.chordsTagline }}</p>
+        <p class="project__stat">{{ t().projects.chordsStat }}</p>
         <p class="project__stack">{{ chords.stack }}</p>
         <div class="project__links">
-          <a [href]="chords.live" target="_blank" rel="noopener">Live demo</a>
-          <a [href]="chords.repo" target="_blank" rel="noopener">Source</a>
+          <a [href]="chords.live" target="_blank" rel="noopener">{{ t().projects.live }}</a>
+          <a [href]="chords.repo" target="_blank" rel="noopener">{{ t().projects.source }}</a>
         </div>
       </article>
 
       <article class="project">
-        <svg class="project__motif" viewBox="0 0 240 60" aria-hidden="true">
-          <line x1="10" y1="40" x2="230" y2="40" />
-          @for (x of [10,50,90,130,170,210]; track x) {
-            <circle [attr.cx]="x" cy="40" r="4" />
-          }
-          <path d="M90 40 L 140 15 L 210 15" />
-          <circle cx="140" cy="15" r="4" class="project__motif-accent" />
-          <circle cx="210" cy="15" r="4" class="project__motif-accent" />
-        </svg>
+        @if (metropolitano.screenshots.length) {
+          <div class="carousel" (mouseenter)="metroCarousel.stop()" (mouseleave)="metroCarousel.start()">
+            @for (src of metropolitano.screenshots; track src; let i = $index) {
+              <img [src]="src" alt="" class="carousel__slide" [class.is-active]="i === metroCarousel.index()" />
+            }
+            @if (metropolitano.screenshots.length > 1) {
+              <div class="carousel__dots">
+                @for (src of metropolitano.screenshots; track src; let i = $index) {
+                  <button type="button" [class.is-active]="i === metroCarousel.index()" (click)="metroCarousel.goTo(i)" [attr.aria-label]="'Slide ' + (i + 1)"></button>
+                }
+              </div>
+            }
+          </div>
+        } @else {
+          <svg class="project__motif" viewBox="0 0 240 60" aria-hidden="true">
+            <line x1="10" y1="40" x2="230" y2="40" />
+            @for (x of [10,50,90,130,170,210]; track x) {
+              <circle [attr.cx]="x" cy="40" r="4" />
+            }
+            <path d="M90 40 L 140 15 L 210 15" />
+            <circle cx="140" cy="15" r="4" class="project__motif-accent" />
+            <circle cx="210" cy="15" r="4" class="project__motif-accent" />
+          </svg>
+        }
         <h3>Mi Metropolitano</h3>
-        <p>{{ metropolitano.tagline }}</p>
-        <p class="project__stat">{{ metropolitano.stat }}</p>
+        <p>{{ t().projects.metroTagline }}</p>
+        <p class="project__stat">{{ t().projects.metroStat }}</p>
         <p class="project__stack">{{ metropolitano.stack }}</p>
         <div class="project__links">
-          <a [href]="metropolitano.live" target="_blank" rel="noopener">Live demo</a>
-          <a [href]="metropolitano.repo" target="_blank" rel="noopener">Source</a>
+          <a [href]="metropolitano.live" target="_blank" rel="noopener">{{ t().projects.live }}</a>
+          <a [href]="metropolitano.repo" target="_blank" rel="noopener">{{ t().projects.source }}</a>
         </div>
       </article>
     </div>
   </section>
 
   <section class="band reveal" id="writing">
-    <h2>Writing</h2>
+    <h2>{{ t().writing.heading }}</h2>
     <ul class="writing-list">
       @for (post of writing; track post.url) {
         <li>
@@ -141,12 +211,12 @@
         </li>
       }
     </ul>
-    <a class="writing-more" [href]="devto" target="_blank" rel="noopener">All articles on dev.to &rarr;</a>
+    <a class="writing-more" [href]="devto" target="_blank" rel="noopener">{{ t().writing.more }}</a>
   </section>
 
   <footer class="contact reveal" id="contact">
-    <h2>Let's talk</h2>
-    <p>Open to software engineering and team lead roles &mdash; reach out directly.</p>
+    <h2>{{ t().contact.heading }}</h2>
+    <p>{{ t().contact.body }}</p>
     <div class="contact__links">
       <a class="btn btn--primary" [href]="'mailto:' + email">{{ email }}</a>
       <a class="btn btn--ghost" [href]="linkedin" target="_blank" rel="noopener">LinkedIn</a>
