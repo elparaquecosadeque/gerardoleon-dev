@@ -122,14 +122,22 @@ export class App implements AfterViewInit, OnDestroy {
       stack: 'Angular 22',
       live: 'https://elparaquecosadeque.github.io/the-chords/chord-finder',
       repo: 'https://github.com/elparaquecosadeque/the-chords',
-      screenshots: ['/assets/screenshots/the-chords/1.jpg', '/assets/screenshots/the-chords/2.jpg'],
+      screenshots: [
+        '/assets/screenshots/the-chords/3.JPG', // chord finder, multiple chords
+        '/assets/screenshots/the-chords/1.JPG', // circle of fifths, diatonic chords
+        '/assets/screenshots/the-chords/2.JPG', // composer workspace
+      ],
     },
     {
       id: 'metropolitano',
       stack: 'Angular 22 · PWA',
       live: 'https://oficinamentaldebruno.com/mi-metropolitano/',
       repo: 'https://github.com/elparaquecosadeque/mi-metropolitano',
-      screenshots: ['/assets/screenshots/mi-metropolitano/1.jpg', '/assets/screenshots/mi-metropolitano/2.jpg'],
+      screenshots: [
+        '/assets/screenshots/mi-metropolitano/2.jpg', // route search result with transfer
+        '/assets/screenshots/mi-metropolitano/3.JPG', // route & schedule browser
+        '/assets/screenshots/mi-metropolitano/4.JPG', // mobile search result
+      ],
     },
     {
       id: 'personal-trainer-pwa',
@@ -143,7 +151,10 @@ export class App implements AfterViewInit, OnDestroy {
       stack: 'Angular',
       live: 'https://elparaquecosadeque.github.io/live-sound-calculator/',
       repo: 'https://github.com/elparaquecosadeque/live-sound-calculator',
-      screenshots: ['/assets/screenshots/live-sound-calculator/1.jpg', '/assets/screenshots/live-sound-calculator/2.jpg'],
+      screenshots: [
+        '/assets/screenshots/live-sound-calculator/1.jpg', // empty state
+        '/assets/screenshots/live-sound-calculator/3.JPG', // all six calculators filled in
+      ],
     },
     {
       id: 'terminal-scripts',

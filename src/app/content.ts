@@ -75,7 +75,7 @@ export const CONTENT: Record<Lang, Content> = {
     focus: {
       heading: 'What I build with',
       groups: [
-        { label: 'Backend & Cloud', items: ['.NET / C#', 'Elixir','AWS Lambda', 'Azure DevOps', 'MSSQL', 'SNS/SQS', 'GitHub Actions', 'PowerShell', 'Bash', 'Linux'] },
+        { label: 'Backend & Cloud', items: ['.NET / C#', 'Elixir', 'AWS Lambda', 'Azure DevOps', 'MSSQL', 'SNS/SQS', 'GitHub Actions', 'PowerShell', 'Bash', 'Linux'] },
         { label: 'Frontend Engineering', items: ['Angular', 'TypeScript', 'JavaScript', 'Reactive programming', 'RxJS', 'HTML5', 'CSS3', 'SCSS', 'PWA'] },
         { label: 'Leadership', items: ['Hiring', 'Mentoring', 'Code review', 'Scrum', 'Gherkin specs', 'Agile', 'Project management', 'Technical interviews'] },
       ],
@@ -95,15 +95,14 @@ export const CONTENT: Record<Lang, Content> = {
           stack: '.NET Core · C# · Angular · MSSQL · Azure DevOps · AWS Lambda',
         },
         {
-          company: 'Trestles TLMS',
-          role: 'Full Stack Software Developer',
-          period: 'May 2019 — Present',
+          company: 'Tranzact',
+          role: 'Software Engineer (Team Lead)',
+          period: 'Feb 2021 — Jun 2023',
           bullets: [
-            'Built the frontend in Angular and backend in C# .NET Core, with SQL Server 2017 scripting.',
-            'Developed a cross-platform Android/iOS app with Ionic.',
-            'Built a test-automation framework with NUnit, SpecFlow, and Selenium (C# .NET Core).',
+            'Led a team of 3 engineers under Scrum, including technical candidate evaluation.',
+            'Migrated a critical VoIP application off-premise, cutting infrastructure <strong>90%</strong> while holding <strong>99.5% uptime</strong> and zero P1 incidents.',
           ],
-          stack: 'Angular · C# · .NET Core · SQL Server · Ionic · NUnit · SpecFlow · Selenium',
+          stack: '.NET Core 5+ · Akka.NET · MSSQL · Azure · AWS Lambda · Splunk',
         },
         {
           company: 'Signal Insights Inc. (New Jersey & Sweden)',
@@ -116,14 +115,15 @@ export const CONTENT: Record<Lang, Content> = {
           stack: 'Linux · Elixir · JavaScript · Functional Programming',
         },
         {
-          company: 'Tranzact',
-          role: 'Software Engineer (Team Lead)',
-          period: 'Feb 2021 — Jun 2023',
+          company: 'Trestles TLMS',
+          role: 'Full Stack Software Developer',
+          period: 'May 2019 — Jan 2021',
           bullets: [
-            'Led a team of 3 engineers under Scrum, including technical candidate evaluation.',
-            'Migrated a critical VoIP application off-premise, cutting infrastructure <strong>90%</strong> while holding <strong>99.5% uptime</strong> and zero P1 incidents.',
+            'Built the frontend in Angular and backend in C# .NET Core, with SQL Server 2017 scripting.',
+            'Developed a cross-platform Android/iOS app with Ionic.',
+            'Built a test-automation framework with NUnit, SpecFlow, and Selenium (C# .NET Core).',
           ],
-          stack: '.NET Core 5+ · Akka.NET · MSSQL · Azure · AWS Lambda · Splunk',
+          stack: 'Angular · C# · .NET Core · SQL Server · Ionic · NUnit · SpecFlow · Selenium',
         },
         {
           company: '3DIQ Inc.',
@@ -155,9 +155,9 @@ export const CONTENT: Record<Lang, Content> = {
       certificationsLabel: 'Certifications',
       entries: [
         { school: 'USIL', detail: "Bachelor's, Business & Software Engineering", period: '2024 — Present' },
-        { school: 'TECSUP', detail: 'Software Engineering Technician — thesis on resilient distributed systems', period: '2019 — 2021' },
+        { school: 'TECSUP', detail: 'Software Engineering Technician — thesis on resilient distributed systems', period: '2016 — 2019 (Thesis in 2021)' },
         { school: 'CTAudio', detail: 'Technician, Live Sound Reinforcement', period: '2023' },
-        { school: 'ISIL', detail: 'Technician, Business Administration — unconcluded (3 semesters)', period: 'Until 2021' },
+        { school: 'ISIL', detail: 'Technician, Business Administration — unconcluded', period: 'Until 2021' },
       ],
       languages: [
         { name: 'English', level: 'Fluent — C1' },
@@ -245,15 +245,14 @@ export const CONTENT: Record<Lang, Content> = {
           stack: '.NET Core · C# · Angular · MSSQL · Azure DevOps · AWS Lambda',
         },
         {
-          company: 'Trestles TLMS',
-          role: 'Full Stack Software Developer',
-          period: 'May 2019 — Actualidad',
+          company: 'Tranzact',
+          role: 'Software Engineer (Team Lead)',
+          period: 'Feb 2021 — Jun 2023',
           bullets: [
-            'Desarrollo front-end con Angular, back-end con C# .NET Core, y scripts en SQL Server 2017.',
-            'Desarrollo de aplicación multiplataforma Android/iOS con Ionic.',
-            'Desarrollo de framework de automatización de pruebas con NUnit, SpecFlow y Selenium (C# .NET Core).',
+            'Lideré un equipo de 3 ingenieros bajo Scrum, incluyendo evaluación técnica de candidatos.',
+            'Migré una aplicación VoIP crítica fuera de infraestructura on-premise, reduciéndola en <strong>90%</strong> mientras mantenía <strong>99.5% de uptime</strong> y cero incidentes P1.',
           ],
-          stack: 'Angular · C# · .NET Core · SQL Server · Ionic · NUnit · SpecFlow · Selenium',
+          stack: '.NET Core 5+ · Akka.NET · MSSQL · Azure · AWS Lambda · Splunk',
         },
         {
           company: 'Signal Insights Inc. (Nueva Jersey y Suecia)',
@@ -266,14 +265,15 @@ export const CONTENT: Record<Lang, Content> = {
           stack: 'Linux · Elixir · JavaScript · Programación Funcional',
         },
         {
-          company: 'Tranzact',
-          role: 'Software Engineer (Team Lead)',
-          period: 'Feb 2021 — Jun 2023',
+          company: 'Trestles TLMS',
+          role: 'Full Stack Software Developer',
+          period: 'May 2019 — Ene 2021',
           bullets: [
-            'Lideré un equipo de 3 ingenieros bajo Scrum, incluyendo evaluación técnica de candidatos.',
-            'Migré una aplicación VoIP crítica fuera de infraestructura on-premise, reduciéndola en <strong>90%</strong> mientras mantenía <strong>99.5% de uptime</strong> y cero incidentes P1.',
+            'Desarrollo front-end con Angular, back-end con C# .NET Core, y scripts en SQL Server 2017.',
+            'Desarrollo de aplicación multiplataforma Android/iOS con Ionic.',
+            'Desarrollo de framework de automatización de pruebas con NUnit, SpecFlow y Selenium (C# .NET Core).',
           ],
-          stack: '.NET Core 5+ · Akka.NET · MSSQL · Azure · AWS Lambda · Splunk',
+          stack: 'Angular · C# · .NET Core · SQL Server · Ionic · NUnit · SpecFlow · Selenium',
         },
         {
           company: '3DIQ Inc.',
@@ -305,9 +305,9 @@ export const CONTENT: Record<Lang, Content> = {
       certificationsLabel: 'Certificaciones',
       entries: [
         { school: 'USIL', detail: 'Bachillerato, Ingeniería Empresarial y de Sistemas', period: '2024 — Actualidad' },
-        { school: 'TECSUP', detail: 'Técnico en Ingeniería de Software — tesis sobre sistemas distribuidos resilientes', period: '2019 — 2021' },
+        { school: 'TECSUP', detail: 'Técnico en Ingeniería de Software — tesis sobre sistemas distribuidos resilientes', period: '2016 — 2019 (Tesis en 2021)' },
         { school: 'CTAudio', detail: 'Técnico en Reforzamiento Sonoro en Vivo', period: '2023' },
-        { school: 'ISIL', detail: 'Técnico en Administración de Empresas — inconcluso (3 ciclos)', period: 'Hasta 2021' },
+        { school: 'ISIL', detail: 'Técnico en Administración de Empresas — inconcluso', period: 'Hasta 2021' },
       ],
       languages: [
         { name: 'Inglés', level: 'Fluido — C1' },
