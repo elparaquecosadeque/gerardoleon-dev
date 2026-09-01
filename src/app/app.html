@@ -72,7 +72,7 @@
   <section class="band reveal" id="experience">
     <h2>{{ t().experience.heading }}</h2>
     <ol class="timeline">
-      @for (job of t().experience.jobs; track job.company) {
+      @for (job of visibleJobs(); track job.company) {
         <li class="timeline__item">
           <div class="timeline__marker" aria-hidden="true"></div>
           <div class="timeline__content">
@@ -89,6 +89,11 @@
         </li>
       }
     </ol>
+    @if (hasMoreExperience()) {
+      <button type="button" class="see-more" (click)="showAllExperience.set(!showAllExperience())">
+        {{ showAllExperience() ? t().experience.seeLess : t().experience.seeMore }}
+      </button>
+    }
   </section>
 
   <section class="band reveal" id="education">
@@ -97,7 +102,7 @@
       <div class="creds-col">
         <p class="creds-col__label">{{ t().education.educationLabel }}</p>
         <ul class="edu-list">
-          @for (e of t().education.entries; track e.school) {
+          @for (e of visibleEducation(); track e.school) {
             <li>
               <span class="edu-list__school">{{ e.school }}</span>
               <span class="edu-list__detail">{{ e.detail }}</span>
@@ -110,7 +115,7 @@
       <div class="creds-col">
         <p class="creds-col__label">{{ t().education.languagesLabel }}</p>
         <ul class="kv-list">
-          @for (l of t().education.languages; track l.name) {
+          @for (l of visibleLanguages(); track l.name) {
             <li><span>{{ l.name }}</span><span>{{ l.level }}</span></li>
           }
         </ul>
@@ -119,7 +124,7 @@
       <div class="creds-col">
         <p class="creds-col__label">{{ t().education.certificationsLabel }}</p>
         <ul class="cert-list">
-          @for (c of t().education.certifications; track c.name) {
+          @for (c of visibleCertifications(); track c.name) {
             <li>
               <span class="cert-list__name">{{ c.name }}</span>
               <span class="cert-list__meta">{{ c.issuer }} · {{ c.date }}</span>
@@ -128,74 +133,104 @@
         </ul>
       </div>
     </div>
+    @if (hasMoreCredentials()) {
+      <button type="button" class="see-more" (click)="showAllCredentials.set(!showAllCredentials())">
+        {{ showAllCredentials() ? t().education.seeLess : t().education.seeMore }}
+      </button>
+    }
   </section>
 
   <section class="band reveal" id="projects">
     <h2>{{ t().projects.heading }}</h2>
-    <div class="projects">
-      <article class="project">
-        @if (chords.screenshots.length) {
-          <div class="carousel" (mouseenter)="chordsCarousel.stop()" (mouseleave)="chordsCarousel.start()">
-            @for (src of chords.screenshots; track src; let i = $index) {
-              <img [src]="src" alt="" class="carousel__slide" [class.is-active]="i === chordsCarousel.index()" />
-            }
-            @if (chords.screenshots.length > 1) {
-              <div class="carousel__dots">
-                @for (src of chords.screenshots; track src; let i = $index) {
-                  <button type="button" [class.is-active]="i === chordsCarousel.index()" (click)="chordsCarousel.goTo(i)" [attr.aria-label]="'Slide ' + (i + 1)"></button>
-                }
-              </div>
-            }
-          </div>
-        } @else {
-          <svg class="project__motif" viewBox="0 0 240 60" preserveAspectRatio="none" aria-hidden="true">
-            <path d="M0 30 Q 20 5, 40 30 T 80 30 T 120 30 T 160 30 T 200 30 T 240 30" />
-          </svg>
-        }
-        <h3>The Chords</h3>
-        <p>{{ t().projects.chordsTagline }}</p>
-        <p class="project__stat">{{ t().projects.chordsStat }}</p>
-        <p class="project__stack">{{ chords.stack }}</p>
-        <div class="project__links">
-          <a [href]="chords.live" target="_blank" rel="noopener">{{ t().projects.live }}</a>
-          <a [href]="chords.repo" target="_blank" rel="noopener">{{ t().projects.source }}</a>
-        </div>
-      </article>
 
-      <article class="project">
-        @if (metropolitano.screenshots.length) {
-          <div class="carousel" (mouseenter)="metroCarousel.stop()" (mouseleave)="metroCarousel.start()">
-            @for (src of metropolitano.screenshots; track src; let i = $index) {
-              <img [src]="src" alt="" class="carousel__slide" [class.is-active]="i === metroCarousel.index()" />
-            }
-            @if (metropolitano.screenshots.length > 1) {
-              <div class="carousel__dots">
-                @for (src of metropolitano.screenshots; track src; let i = $index) {
-                  <button type="button" [class.is-active]="i === metroCarousel.index()" (click)="metroCarousel.goTo(i)" [attr.aria-label]="'Slide ' + (i + 1)"></button>
+    <div class="proj-carousel">
+      <button type="button" class="proj-carousel__arrow proj-carousel__arrow--prev" (click)="prevPage()" [attr.aria-label]="t().projects.prev">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 5l-7 7 7 7" /></svg>
+      </button>
+
+      <div class="proj-carousel__viewport">
+        <div class="proj-carousel__track" [style.transform]="'translateX(-' + (activePage() * 100) + '%)'">
+          @for (page of projectPages; track $index) {
+            <div class="proj-carousel__page">
+              @for (p of page; track p.id) {
+                <article class="project">
+              @if (p.screenshots.length) {
+                <div class="carousel" (mouseenter)="p.carousel.stop()" (mouseleave)="p.carousel.start()">
+                  @for (src of p.screenshots; track src; let si = $index) {
+                    <img [src]="src" alt="" class="carousel__slide" [class.is-active]="si === p.carousel.index()" />
+                  }
+                  @if (p.screenshots.length > 1) {
+                    <div class="carousel__dots">
+                      @for (src of p.screenshots; track src; let si = $index) {
+                        <button type="button" [class.is-active]="si === p.carousel.index()" (click)="p.carousel.goTo(si)" [attr.aria-label]="'Slide ' + (si + 1)"></button>
+                      }
+                    </div>
+                  }
+                </div>
+              } @else {
+                @switch (p.id) {
+                  @case ('chords') {
+                    <svg class="project__motif" viewBox="0 0 240 60" preserveAspectRatio="none" aria-hidden="true">
+                      <path d="M0 30 Q 20 5, 40 30 T 80 30 T 120 30 T 160 30 T 200 30 T 240 30" />
+                    </svg>
+                  }
+                  @case ('metropolitano') {
+                    <svg class="project__motif" viewBox="0 0 240 60" aria-hidden="true">
+                      <line x1="10" y1="40" x2="230" y2="40" />
+                      @for (x of [10,50,90,130,170,210]; track x) {
+                        <circle [attr.cx]="x" cy="40" r="4" />
+                      }
+                      <path d="M90 40 L 140 15 L 210 15" />
+                      <circle cx="140" cy="15" r="4" class="project__motif-accent" />
+                      <circle cx="210" cy="15" r="4" class="project__motif-accent" />
+                    </svg>
+                  }
+                  @case ('terminal-scripts') {
+                    <svg class="project__motif" viewBox="0 0 240 60" aria-hidden="true">
+                      <rect x="4" y="4" width="232" height="52" rx="6" class="project__motif-frame" />
+                      <circle cx="16" cy="15" r="2.2" />
+                      <circle cx="24" cy="15" r="2.2" />
+                      <circle cx="32" cy="15" r="2.2" />
+                      <path d="M16 32 L 28 40 L 16 48" />
+                      <line x1="34" y1="48" x2="60" y2="48" class="project__motif-cursor" />
+                    </svg>
+                  }
+                  @default {
+                    <svg class="project__motif" viewBox="0 0 240 60" aria-hidden="true">
+                      <rect x="4" y="4" width="232" height="52" rx="6" class="project__motif-frame" />
+                      <line x1="20" y1="30" x2="220" y2="30" stroke-dasharray="4 6" />
+                    </svg>
+                  }
                 }
+              }
+              <h3>{{ t().projects.items[p.index].name }}</h3>
+              <p>{{ t().projects.items[p.index].tagline }}</p>
+              @if (t().projects.items[p.index].stat) {
+                <p class="project__stat">{{ t().projects.items[p.index].stat }}</p>
+              }
+              <p class="project__stack">{{ p.stack }}</p>
+              <div class="project__links">
+                @if (p.live) {
+                  <a [href]="p.live" target="_blank" rel="noopener">{{ t().projects.live }}</a>
+                }
+                <a [href]="p.repo" target="_blank" rel="noopener">{{ t().projects.source }}</a>
               </div>
-            }
-          </div>
-        } @else {
-          <svg class="project__motif" viewBox="0 0 240 60" aria-hidden="true">
-            <line x1="10" y1="40" x2="230" y2="40" />
-            @for (x of [10,50,90,130,170,210]; track x) {
-              <circle [attr.cx]="x" cy="40" r="4" />
-            }
-            <path d="M90 40 L 140 15 L 210 15" />
-            <circle cx="140" cy="15" r="4" class="project__motif-accent" />
-            <circle cx="210" cy="15" r="4" class="project__motif-accent" />
-          </svg>
-        }
-        <h3>Mi Metropolitano</h3>
-        <p>{{ t().projects.metroTagline }}</p>
-        <p class="project__stat">{{ t().projects.metroStat }}</p>
-        <p class="project__stack">{{ metropolitano.stack }}</p>
-        <div class="project__links">
-          <a [href]="metropolitano.live" target="_blank" rel="noopener">{{ t().projects.live }}</a>
-          <a [href]="metropolitano.repo" target="_blank" rel="noopener">{{ t().projects.source }}</a>
+                </article>
+              }
+            </div>
+          }
         </div>
-      </article>
+      </div>
+
+      <button type="button" class="proj-carousel__arrow proj-carousel__arrow--next" (click)="nextPage()" [attr.aria-label]="t().projects.next">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 5l7 7-7 7" /></svg>
+      </button>
+    </div>
+
+    <div class="proj-carousel__dots">
+      @for (page of projectPages; track $index; let pi = $index) {
+        <button type="button" [class.is-active]="pi === activePage()" (click)="activePage.set(pi)" [attr.aria-label]="'Page ' + (pi + 1)"></button>
+      }
     </div>
   </section>
 
@@ -215,6 +250,7 @@
   </section>
 
   <footer class="contact reveal" id="contact">
+    <img class="contact__bg" src="/assets/silhouette3.jpg" alt="" aria-hidden="true" />
     <h2>{{ t().contact.heading }}</h2>
     <p>{{ t().contact.body }}</p>
     <div class="contact__links">

@@ -27,6 +27,12 @@ function prefersReducedMotion(): boolean {
   return typeof window !== 'undefined' && window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
 }
 
+function chunk<T>(items: T[], size: number): T[][] {
+  const pages: T[][] = [];
+  for (let i = 0; i < items.length; i += size) pages.push(items.slice(i, i + size));
+  return pages;
+}
+
 const LANG_KEY = 'gl-lang';
 
 @Component({
@@ -46,6 +52,32 @@ export class App implements AfterViewInit, OnDestroy {
     const saved = window.localStorage.getItem(LANG_KEY);
     return saved === 'es' || saved === 'en' ? saved : 'en';
   }
+
+  protected readonly showAllExperience = signal(false);
+  protected readonly showAllCredentials = signal(false);
+
+  protected readonly visibleJobs = computed(() => {
+    const jobs = this.t().experience.jobs;
+    return this.showAllExperience() ? jobs : jobs.slice(0, 2);
+  });
+  protected readonly hasMoreExperience = computed(() => this.t().experience.jobs.length > 2);
+
+  protected readonly visibleEducation = computed(() => {
+    const entries = this.t().education.entries;
+    return this.showAllCredentials() ? entries : entries.slice(0, 2);
+  });
+  protected readonly visibleLanguages = computed(() => {
+    const items = this.t().education.languages;
+    return this.showAllCredentials() ? items : items.slice(0, 2);
+  });
+  protected readonly visibleCertifications = computed(() => {
+    const items = this.t().education.certifications;
+    return this.showAllCredentials() ? items : items.slice(0, 2);
+  });
+  protected readonly hasMoreCredentials = computed(() => {
+    const e = this.t().education;
+    return e.entries.length > 2 || e.languages.length > 2 || e.certifications.length > 2;
+  });
 
   protected toggleLang(): void {
     const next = this.lang() === 'en' ? 'es' : 'en';
@@ -73,34 +105,72 @@ export class App implements AfterViewInit, OnDestroy {
       targets.forEach((el) => observer.observe(el));
     }
 
-    this.chordsCarousel.start();
-    this.metroCarousel.start();
+    this.projects.forEach((p) => p.carousel.start());
   }
 
   ngOnDestroy(): void {
-    this.chordsCarousel.stop();
-    this.metroCarousel.stop();
+    this.projects.forEach((p) => p.carousel.stop());
   }
 
-  // Drop screenshots at these paths and list them here — the carousel activates
-  // automatically once a project has more than one, auto-advancing every ~4.5s
-  // (paused on hover, and skipped entirely under prefers-reduced-motion).
-  protected readonly chords = {
-    stack: 'Angular 22',
-    live: 'https://elparaquecosadeque.github.io/the-chords/chord-finder',
-    repo: 'https://github.com/elparaquecosadeque/the-chords',
-    screenshots: [] as string[], // e.g. '/assets/screenshots/the-chords/1.jpg'
-  };
+  // Each project's screenshots carousel auto-advances every ~4.5s when it has more
+  // than one image (paused on hover, skipped under prefers-reduced-motion).
+  // The `projects` array order also drives the outer project carousel, matched by
+  // index against t().projects.items in content.ts.
+  private readonly projectData = [
+    {
+      id: 'chords',
+      stack: 'Angular 22',
+      live: 'https://elparaquecosadeque.github.io/the-chords/chord-finder',
+      repo: 'https://github.com/elparaquecosadeque/the-chords',
+      screenshots: ['/assets/screenshots/the-chords/1.jpg', '/assets/screenshots/the-chords/2.jpg'],
+    },
+    {
+      id: 'metropolitano',
+      stack: 'Angular 22 · PWA',
+      live: 'https://oficinamentaldebruno.com/mi-metropolitano/',
+      repo: 'https://github.com/elparaquecosadeque/mi-metropolitano',
+      screenshots: ['/assets/screenshots/mi-metropolitano/1.jpg', '/assets/screenshots/mi-metropolitano/2.jpg'],
+    },
+    {
+      id: 'personal-trainer-pwa',
+      stack: 'Angular · PWA',
+      live: 'https://elparaquecosadeque.github.io/personal-trainer-pwa/',
+      repo: 'https://github.com/elparaquecosadeque/personal-trainer-pwa',
+      screenshots: ['/assets/screenshots/personal-trainer-pwa/1.jpg', '/assets/screenshots/personal-trainer-pwa/2.jpg'],
+    },
+    {
+      id: 'live-sound-calculator',
+      stack: 'Angular',
+      live: 'https://elparaquecosadeque.github.io/live-sound-calculator/',
+      repo: 'https://github.com/elparaquecosadeque/live-sound-calculator',
+      screenshots: ['/assets/screenshots/live-sound-calculator/1.jpg', '/assets/screenshots/live-sound-calculator/2.jpg'],
+    },
+    {
+      id: 'terminal-scripts',
+      stack: 'PowerShell',
+      live: null as string | null,
+      repo: 'https://github.com/elparaquecosadeque/terminal-scripts',
+      screenshots: ['/assets/screenshots/terminal-scripts/1.jpg'],
+    },
+  ];
 
-  protected readonly metropolitano = {
-    stack: 'Angular 22 · PWA',
-    live: 'https://oficinamentaldebruno.com/mi-metropolitano/',
-    repo: 'https://github.com/elparaquecosadeque/mi-metropolitano',
-    screenshots: [] as string[], // e.g. '/assets/screenshots/mi-metropolitano/1.jpg'
-  };
+  protected readonly projects = this.projectData.map((p, index) => ({
+    ...p,
+    index,
+    carousel: new Carousel(p.screenshots.length),
+  }));
 
-  protected readonly chordsCarousel = new Carousel(this.chords.screenshots.length);
-  protected readonly metroCarousel = new Carousel(this.metropolitano.screenshots.length);
+  // Outer carousel pages the project grid two cards at a time.
+  protected readonly projectPages = chunk(this.projects, 2);
+  protected readonly activePage = signal(0);
+
+  protected prevPage(): void {
+    this.activePage.update((i) => (i - 1 + this.projectPages.length) % this.projectPages.length);
+  }
+
+  protected nextPage(): void {
+    this.activePage.update((i) => (i + 1) % this.projectPages.length);
+  }
 
   protected readonly writing = [
     { title: 'Do you assume or confirm?', url: 'https://dev.to/gerardo_leon/do-you-assume-or-confirm-57m3', tag: 'debugging' },

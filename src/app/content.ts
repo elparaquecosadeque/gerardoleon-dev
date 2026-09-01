@@ -34,7 +34,7 @@ export interface Content {
   nav: { projects: string; writing: string; contact: string; toTop: string };
   hero: { role: string; bio: string; ctaProjects: string; ctaCv: string };
   focus: { heading: string; groups: FocusGroup[] };
-  experience: { heading: string; jobs: Job[] };
+  experience: { heading: string; jobs: Job[]; seeMore: string; seeLess: string };
   education: {
     heading: string;
     educationLabel: string;
@@ -43,15 +43,16 @@ export interface Content {
     entries: EduEntry[];
     languages: LanguageEntry[];
     certifications: CertEntry[];
+    seeMore: string;
+    seeLess: string;
   };
   projects: {
     heading: string;
-    chordsTagline: string;
-    chordsStat: string;
-    metroTagline: string;
-    metroStat: string;
     live: string;
     source: string;
+    prev: string;
+    next: string;
+    items: { name: string; tagline: string; stat?: string }[];
   };
   writing: { heading: string; more: string };
   contact: { heading: string; body: string };
@@ -94,6 +95,27 @@ export const CONTENT: Record<Lang, Content> = {
           stack: '.NET Core · C# · Angular · MSSQL · Azure DevOps · AWS Lambda',
         },
         {
+          company: 'Trestles TLMS',
+          role: 'Full Stack Software Developer',
+          period: 'May 2019 — Present',
+          bullets: [
+            'Built the frontend in Angular and backend in C# .NET Core, with SQL Server 2017 scripting.',
+            'Developed a cross-platform Android/iOS app with Ionic.',
+            'Built a test-automation framework with NUnit, SpecFlow, and Selenium (C# .NET Core).',
+          ],
+          stack: 'Angular · C# · .NET Core · SQL Server · Ionic · NUnit · SpecFlow · Selenium',
+        },
+        {
+          company: 'Signal Insights Inc. (New Jersey & Sweden)',
+          role: 'Software Engineer',
+          period: 'Aug 2021 — Dec 2023',
+          bullets: [
+            'Kept client web-scraping automations running at a <strong>95% uptime floor</strong>.',
+            'Handled bug fixes and script-modification requests for clients.',
+          ],
+          stack: 'Linux · Elixir · JavaScript · Functional Programming',
+        },
+        {
           company: 'Tranzact',
           role: 'Software Engineer (Team Lead)',
           period: 'Feb 2021 — Jun 2023',
@@ -103,7 +125,28 @@ export const CONTENT: Record<Lang, Content> = {
           ],
           stack: '.NET Core 5+ · Akka.NET · MSSQL · Azure · AWS Lambda · Splunk',
         },
+        {
+          company: '3DIQ Inc.',
+          role: 'Back End Developer',
+          period: 'Mar 2019 — May 2019',
+          bullets: [
+            'Built backend services with Node.js and Loopback 3/4.',
+            'Handled data modeling and manipulation in MongoDB.',
+          ],
+          stack: 'Node.js · Loopback · MongoDB',
+        },
+        {
+          company: 'WebCreek Inc.',
+          role: 'Full Stack Software Developer',
+          period: 'Jan 2019 — Mar 2019',
+          bullets: [
+            'Built Android apps with Kotlin and web apps with C#.',
+          ],
+          stack: 'Kotlin · Android · C#',
+        },
       ],
+      seeMore: 'See full experience',
+      seeLess: 'Show less',
     },
     education: {
       heading: 'Education & Credentials',
@@ -111,8 +154,10 @@ export const CONTENT: Record<Lang, Content> = {
       languagesLabel: 'Languages',
       certificationsLabel: 'Certifications',
       entries: [
-        { school: 'USIL', detail: "Bachelor's, Business & Software Engineering", period: '2023 — 2026' },
-        { school: 'TECSUP', detail: 'Professional Technician, Software Engineering — thesis on distributed systems', period: '2019 — 2021' },
+        { school: 'USIL', detail: "Bachelor's, Business & Software Engineering", period: '2024 — Present' },
+        { school: 'TECSUP', detail: 'Software Engineering Technician — thesis on resilient distributed systems', period: '2019 — 2021' },
+        { school: 'CTAudio', detail: 'Technician, Live Sound Reinforcement', period: '2023' },
+        { school: 'ISIL', detail: 'Technician, Business Administration — unconcluded (3 semesters)', period: 'Until 2021' },
       ],
       languages: [
         { name: 'English', level: 'Fluent — C1' },
@@ -125,15 +170,41 @@ export const CONTENT: Record<Lang, Content> = {
         { name: 'Claude Code in Action', issuer: 'Anthropic', date: 'Aug 2026' },
         { name: 'Claude Code in Action Certificate — Anthropic Claude 101', issuer: 'Anthropic', date: 'Jul 2026' },
       ],
+      seeMore: 'See all',
+      seeLess: 'Show less',
     },
     projects: {
       heading: 'Personal Projects',
-      chordsTagline: 'Chord progression generator with a circle-of-fifths selector and visual chord diagrams.',
-      chordsStat: 'Published as reusable npm packages',
-      metroTagline: 'PWA answering "which bus do I take?" for Lima\'s Metropolitano BRT — routing with transfers, QR sharing, offline-ready.',
-      metroStat: '44 stations · 18 tests · geographic backtrack-filtered routing engine',
       live: 'Live demo',
       source: 'Source',
+      prev: 'Previous projects',
+      next: 'Next projects',
+      items: [
+        {
+          name: 'The Chords',
+          tagline: 'Chord progression generator with a circle-of-fifths selector and visual chord diagrams.',
+          stat: 'Published as reusable npm packages',
+        },
+        {
+          name: 'Mi Metropolitano',
+          tagline: 'PWA answering "which bus do I take?" for Lima\'s Metropolitano BRT — routing with transfers, QR sharing, offline-ready.',
+          stat: '44 stations · 18 tests · geographic backtrack-filtered routing engine',
+        },
+        {
+          name: 'Personal Trainer PWA',
+          tagline: 'A public app shell that logs workouts and meals on the go, syncing privately to your own GitHub repo — no data ever leaves your control.',
+          stat: 'ChatGPT-assisted meal reports from the logged data',
+        },
+        {
+          name: 'Live Sound Calculator',
+          tagline: 'Angular calculator for frequency, period, wavelength, speed of sound, and phase-delay conversions used in live sound engineering.',
+        },
+        {
+          name: 'Terminal Scripts',
+          tagline: 'A personal PowerShell toolbox for daily git and terminal workflows — branch switching, port killing, PATH management.',
+          stat: '16 scripts, self-documenting via a built-in listing command',
+        },
+      ],
     },
     writing: { heading: 'Writing', more: 'All articles on dev.to →' },
     contact: { heading: "Let's talk", body: 'Open to software engineering roles — reach out directly.' },
@@ -174,6 +245,27 @@ export const CONTENT: Record<Lang, Content> = {
           stack: '.NET Core · C# · Angular · MSSQL · Azure DevOps · AWS Lambda',
         },
         {
+          company: 'Trestles TLMS',
+          role: 'Full Stack Software Developer',
+          period: 'May 2019 — Actualidad',
+          bullets: [
+            'Desarrollo front-end con Angular, back-end con C# .NET Core, y scripts en SQL Server 2017.',
+            'Desarrollo de aplicación multiplataforma Android/iOS con Ionic.',
+            'Desarrollo de framework de automatización de pruebas con NUnit, SpecFlow y Selenium (C# .NET Core).',
+          ],
+          stack: 'Angular · C# · .NET Core · SQL Server · Ionic · NUnit · SpecFlow · Selenium',
+        },
+        {
+          company: 'Signal Insights Inc. (Nueva Jersey y Suecia)',
+          role: 'Software Engineer',
+          period: 'Ago 2021 — Dic 2023',
+          bullets: [
+            'Mantuve el funcionamiento de las automatizaciones de scraping para los clientes con un piso mínimo de <strong>95% de uptime</strong>.',
+            'Soporte de bugs y requisitos de modificación de scripts para los clientes.',
+          ],
+          stack: 'Linux · Elixir · JavaScript · Programación Funcional',
+        },
+        {
           company: 'Tranzact',
           role: 'Software Engineer (Team Lead)',
           period: 'Feb 2021 — Jun 2023',
@@ -183,7 +275,28 @@ export const CONTENT: Record<Lang, Content> = {
           ],
           stack: '.NET Core 5+ · Akka.NET · MSSQL · Azure · AWS Lambda · Splunk',
         },
+        {
+          company: '3DIQ Inc.',
+          role: 'Back End Developer',
+          period: 'Mar 2019 — May 2019',
+          bullets: [
+            'Desarrollo back-end con NodeJS y Loopback 3-4.',
+            'Manipulación de datos a través de MongoDB.',
+          ],
+          stack: 'Node.js · Loopback · MongoDB',
+        },
+        {
+          company: 'WebCreek Inc.',
+          role: 'Full Stack Software Developer',
+          period: 'Ene 2019 — Mar 2019',
+          bullets: [
+            'Desarrollo de aplicaciones con Android Kotlin y web con C#.',
+          ],
+          stack: 'Kotlin · Android · C#',
+        },
       ],
+      seeMore: 'Ver experiencia completa',
+      seeLess: 'Ver menos',
     },
     education: {
       heading: 'Educación y credenciales',
@@ -191,8 +304,10 @@ export const CONTENT: Record<Lang, Content> = {
       languagesLabel: 'Idiomas',
       certificationsLabel: 'Certificaciones',
       entries: [
-        { school: 'USIL', detail: 'Bachillerato, Ingeniería Empresarial y de Sistemas', period: '2023 — 2026' },
-        { school: 'TECSUP', detail: 'Técnico Profesional en Ingeniería de Software — tesis sobre sistemas distribuidos', period: '2019 — 2021' },
+        { school: 'USIL', detail: 'Bachillerato, Ingeniería Empresarial y de Sistemas', period: '2024 — Actualidad' },
+        { school: 'TECSUP', detail: 'Técnico en Ingeniería de Software — tesis sobre sistemas distribuidos resilientes', period: '2019 — 2021' },
+        { school: 'CTAudio', detail: 'Técnico en Reforzamiento Sonoro en Vivo', period: '2023' },
+        { school: 'ISIL', detail: 'Técnico en Administración de Empresas — inconcluso (3 ciclos)', period: 'Hasta 2021' },
       ],
       languages: [
         { name: 'Inglés', level: 'Fluido — C1' },
@@ -205,15 +320,41 @@ export const CONTENT: Record<Lang, Content> = {
         { name: 'Claude Code in Action', issuer: 'Anthropic', date: 'ago. 2026' },
         { name: 'Claude Code in Action Certificate — Anthropic Claude 101', issuer: 'Anthropic', date: 'jul. 2026' },
       ],
+      seeMore: 'Ver todo',
+      seeLess: 'Ver menos',
     },
     projects: {
       heading: 'Proyectos Personales',
-      chordsTagline: 'Generador de progresiones de acordes con selector de círculo de quintas y diagramas visuales.',
-      chordsStat: 'Publicado como paquetes npm reusables',
-      metroTagline: 'PWA que responde "¿qué bus tomo?" para el Metropolitano de Lima — rutas con trasbordos, QR, funciona sin conexión.',
-      metroStat: '44 estaciones · 18 tests · motor de ruteo con filtro geográfico',
       live: 'Ver demo',
       source: 'Código fuente',
+      prev: 'Proyectos anteriores',
+      next: 'Siguientes proyectos',
+      items: [
+        {
+          name: 'The Chords',
+          tagline: 'Generador de progresiones de acordes con selector de círculo de quintas y diagramas visuales.',
+          stat: 'Publicado como paquetes npm reusables',
+        },
+        {
+          name: 'Mi Metropolitano',
+          tagline: 'PWA que responde "¿qué bus tomo?" para el Metropolitano de Lima — rutas con trasbordos, QR, funciona sin conexión.',
+          stat: '44 estaciones · 18 tests · motor de ruteo con filtro geográfico',
+        },
+        {
+          name: 'Personal Trainer PWA',
+          tagline: 'Un shell público que registra entrenamiento y comida desde el celular, sincronizando en privado a tu propio repo de GitHub — tus datos nunca salen de tu control.',
+          stat: 'Reportes de comida asistidos por ChatGPT a partir de lo registrado',
+        },
+        {
+          name: 'Live Sound Calculator',
+          tagline: 'Calculadora Angular para conversiones de frecuencia, periodo, longitud de onda, velocidad del sonido y desfase, usadas en sonido en vivo.',
+        },
+        {
+          name: 'Terminal Scripts',
+          tagline: 'Mi caja de herramientas de PowerShell para el día a día con git y terminal — cambio de rama, matar procesos por puerto, gestión del PATH.',
+          stat: '16 scripts, autodocumentados con un comando de listado incluido',
+        },
+      ],
     },
     writing: { heading: 'Artículos', more: 'Todos los artículos en dev.to →' },
     contact: { heading: 'Conversemos', body: 'Abierto a roles de ingeniería de software — escríbeme directamente.' },
