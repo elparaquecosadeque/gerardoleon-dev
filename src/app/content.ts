@@ -74,7 +74,7 @@ export const CONTENT: Record<Lang, Content> = {
     focus: {
       heading: 'What I build with',
       groups: [
-        { label: 'Systems & Cloud', items: ['.NET / C#', 'AWS Lambda', 'Azure DevOps', 'MSSQL', 'SNS/SQS', 'GitHub Actions', 'PowerShell', 'Bash', 'Linux'] },
+        { label: 'Backend & Cloud', items: ['.NET / C#', 'Elixir','AWS Lambda', 'Azure DevOps', 'MSSQL', 'SNS/SQS', 'GitHub Actions', 'PowerShell', 'Bash', 'Linux'] },
         { label: 'Frontend Engineering', items: ['Angular', 'TypeScript', 'JavaScript', 'Reactive programming', 'RxJS', 'HTML5', 'CSS3', 'SCSS', 'PWA'] },
         { label: 'Leadership', items: ['Hiring', 'Mentoring', 'Code review', 'Scrum', 'Gherkin specs', 'Agile', 'Project management', 'Technical interviews'] },
       ],
@@ -118,6 +118,7 @@ export const CONTENT: Record<Lang, Content> = {
         { name: 'English', level: 'Fluent — C1' },
         { name: 'French', level: 'Conversational' },
         { name: 'Portuguese', level: 'Conversational' },
+        { name: 'Spanish', level: 'Native' },
       ],
       certifications: [
         { name: 'Cambridge First Certificate in English (FCE)', issuer: 'Cambridge English', date: '2016' },
@@ -126,7 +127,7 @@ export const CONTENT: Record<Lang, Content> = {
       ],
     },
     projects: {
-      heading: 'Projects',
+      heading: 'Personal Projects',
       chordsTagline: 'Chord progression generator with a circle-of-fifths selector and visual chord diagrams.',
       chordsStat: 'Published as reusable npm packages',
       metroTagline: 'PWA answering "which bus do I take?" for Lima\'s Metropolitano BRT — routing with transfers, QR sharing, offline-ready.',
@@ -135,7 +136,7 @@ export const CONTENT: Record<Lang, Content> = {
       source: 'Source',
     },
     writing: { heading: 'Writing', more: 'All articles on dev.to →' },
-    contact: { heading: "Let's talk", body: 'Open to software engineering and team lead roles — reach out directly.' },
+    contact: { heading: "Let's talk", body: 'Open to software engineering roles — reach out directly.' },
   },
   es: {
     nav: { projects: 'Proyectos', writing: 'Artículos', contact: 'Contacto', toTop: 'Volver arriba' },
@@ -153,7 +154,7 @@ export const CONTENT: Record<Lang, Content> = {
     focus: {
       heading: 'Con qué construyo',
       groups: [
-        { label: 'Sistemas & Cloud', items: ['.NET / C#', 'AWS Lambda', 'Azure DevOps', 'MSSQL', 'SNS/SQS', 'GitHub Actions', 'PowerShell', 'Bash', 'Linux'] },
+        { label: 'Backend & Cloud', items: ['.NET / C#', 'Elixir', 'AWS Lambda', 'Azure DevOps', 'MSSQL', 'SNS/SQS', 'GitHub Actions', 'PowerShell', 'Bash', 'Linux'] },
         { label: 'Frontend', items: ['Angular', 'TypeScript', 'JavaScript', 'Programación reactiva', 'RxJS', 'HTML5', 'CSS3', 'SCSS', 'PWA'] },
         { label: 'Liderazgo', items: ['Contratación', 'Mentoría', 'Code review', 'Scrum', 'Specs en Gherkin', 'Agile', 'Gestión de proyectos', 'Entrevistas técnicas'] },
       ],
@@ -197,6 +198,7 @@ export const CONTENT: Record<Lang, Content> = {
         { name: 'Inglés', level: 'Fluido — C1' },
         { name: 'Francés', level: 'Conversacional' },
         { name: 'Portugués', level: 'Conversacional' },
+        { name: 'Español', level: 'Nativo' },
       ],
       certifications: [
         { name: 'Cambridge First Certificate in English (FCE)', issuer: 'Cambridge English', date: '2016' },
@@ -205,7 +207,7 @@ export const CONTENT: Record<Lang, Content> = {
       ],
     },
     projects: {
-      heading: 'Proyectos',
+      heading: 'Proyectos Personales',
       chordsTagline: 'Generador de progresiones de acordes con selector de círculo de quintas y diagramas visuales.',
       chordsStat: 'Publicado como paquetes npm reusables',
       metroTagline: 'PWA que responde "¿qué bus tomo?" para el Metropolitano de Lima — rutas con trasbordos, QR, funciona sin conexión.',
@@ -214,6 +216,6 @@ export const CONTENT: Record<Lang, Content> = {
       source: 'Código fuente',
     },
     writing: { heading: 'Artículos', more: 'Todos los artículos en dev.to →' },
-    contact: { heading: 'Conversemos', body: 'Abierto a roles de ingeniería de software y team lead — escríbeme directamente.' },
+    contact: { heading: 'Conversemos', body: 'Abierto a roles de ingeniería de software — escríbeme directamente.' },
   },
 };
