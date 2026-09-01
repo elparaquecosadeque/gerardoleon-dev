@@ -154,7 +154,7 @@ export const CONTENT: Record<Lang, Content> = {
       languagesLabel: 'Languages',
       certificationsLabel: 'Certifications',
       entries: [
-        { school: 'USIL', detail: "Bachelor's, Business & Software Engineering", period: '2024 — Present' },
+        { school: 'USIL', detail: "Bachelor's, Business & Software Engineering", period: '2023 — 2026' },
         { school: 'TECSUP', detail: 'Software Engineering Technician — thesis on resilient distributed systems', period: '2016 — 2019 (Thesis in 2021)' },
         { school: 'CTAudio', detail: 'Technician, Live Sound Reinforcement', period: '2023' },
         { school: 'ISIL', detail: 'Technician, Business Administration — unconcluded', period: 'Until 2021' },
@@ -304,7 +304,7 @@ export const CONTENT: Record<Lang, Content> = {
       languagesLabel: 'Idiomas',
       certificationsLabel: 'Certificaciones',
       entries: [
-        { school: 'USIL', detail: 'Bachillerato, Ingeniería Empresarial y de Sistemas', period: '2024 — Actualidad' },
+        { school: 'USIL', detail: 'Bachillerato, Ingeniería Empresarial y de Sistemas', period: '2023 — 2026' },
         { school: 'TECSUP', detail: 'Técnico en Ingeniería de Software — tesis sobre sistemas distribuidos resilientes', period: '2016 — 2019 (Tesis en 2021)' },
         { school: 'CTAudio', detail: 'Técnico en Reforzamiento Sonoro en Vivo', period: '2023' },
         { school: 'ISIL', detail: 'Técnico en Administración de Empresas — inconcluso', period: 'Hasta 2021' },
