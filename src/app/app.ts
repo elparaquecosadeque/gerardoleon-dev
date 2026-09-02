@@ -5,7 +5,7 @@ class Carousel {
   readonly index = signal(0);
   private timer?: ReturnType<typeof setInterval>;
 
-  constructor(private readonly length: number, private readonly intervalMs = 4500) {}
+  constructor(private readonly length: number, private readonly intervalMs = 4500) { }
 
   start(): void {
     if (this.length <= 1 || prefersReducedMotion()) return;
@@ -42,7 +42,7 @@ const LANG_KEY = 'gl-lang';
   styleUrl: './app.scss',
 })
 export class App implements AfterViewInit, OnDestroy {
-  constructor(private readonly host: ElementRef<HTMLElement>) {}
+  constructor(private readonly host: ElementRef<HTMLElement>) { }
 
   protected readonly lang = signal<Lang>(this.initialLang());
   protected readonly t = computed(() => CONTENT[this.lang()]);
@@ -120,7 +120,7 @@ export class App implements AfterViewInit, OnDestroy {
     {
       id: 'chords',
       stack: 'Angular 22',
-      live: 'https://elparaquecosadeque.github.io/the-chords/chord-finder',
+      live: 'https://oficinamentaldebruno.com/the-chords/chord-finder',
       repo: 'https://github.com/elparaquecosadeque/the-chords',
       screenshots: [
         '/assets/screenshots/the-chords/3.JPG', // chord finder, multiple chords
