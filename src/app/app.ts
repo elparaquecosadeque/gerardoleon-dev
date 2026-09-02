@@ -124,8 +124,8 @@ export class App implements AfterViewInit, OnDestroy {
       repo: 'https://github.com/elparaquecosadeque/the-chords',
       screenshots: [
         '/assets/screenshots/the-chords/3.JPG', // chord finder, multiple chords
-        '/assets/screenshots/the-chords/1.JPG', // circle of fifths, diatonic chords
-        '/assets/screenshots/the-chords/2.JPG', // composer workspace
+        '/assets/screenshots/the-chords/1.jpg', // circle of fifths, diatonic chords (tracked lowercase in git — see note below)
+        '/assets/screenshots/the-chords/2.jpg', // composer workspace (tracked lowercase in git — see note below)
       ],
     },
     {
